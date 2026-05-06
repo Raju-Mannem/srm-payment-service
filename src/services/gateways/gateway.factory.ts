@@ -4,13 +4,13 @@ import { RazorpayGateway } from './razorpay.gateway';
 import { MockGateway } from './mock.gateway';
 
 export class GatewayFactory {
-  static getGateway(provider: 'stripe' | 'razorpay' | 'mock'): IPaymentGateway {
+  static getGateway(provider: 'STRIPE' | 'RAZORPAY' | 'MOCK'): IPaymentGateway {
     switch (provider) {
-      case 'stripe':
+      case 'STRIPE':
         return new StripeGateway();
-      case 'razorpay':
+      case 'RAZORPAY':
         return new RazorpayGateway();
-      case 'mock':
+      case 'MOCK':
       default:
         return new MockGateway();
     }

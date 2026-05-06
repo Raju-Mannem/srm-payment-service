@@ -11,6 +11,7 @@ import { getOpenApiDocumentation } from './config/swagger';
 const app = express();
 const openApiSpecification = getOpenApiDocumentation();
 
+app.set('trust proxy', 1);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiSpecification));
 app.use(helmet());
 app.use(cors({ origin: '*' }));
