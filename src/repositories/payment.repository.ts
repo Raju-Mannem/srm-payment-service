@@ -1,10 +1,11 @@
 import { PaymentStatus, Prisma } from '../generated/prisma/client';
 import { prisma } from '../prisma/db';
+import type { PaymentProvider } from '../generated/prisma/enums';
 import { AppError, NotFoundError } from '../types/errors';
 
 export class PaymentRepository {
   static async createPayment(data: {
-    provider: string;
+    provider: PaymentProvider;
     amount: number;
     currency: string;
     idempotencyKey: string;
