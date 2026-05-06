@@ -4,13 +4,16 @@ import globals from 'globals';
 
 export default [
   js.configs.recommended,
-
   ...tseslint.configs.recommended,
+  {
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 
   {
     files: ['**/*.ts'],
     languageOptions: {
-      globals: globals.node,
       parserOptions: {
         project: true,
       },
