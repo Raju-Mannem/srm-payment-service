@@ -3,10 +3,11 @@ import { PaymentRepository } from '../../repositories/payment.repository';
 import { paymentQueue } from '../../jobs/payment.queue';
 import { checkIdempotency, cacheIdempotency } from '../../utils/idempotency';
 import { logger } from '../../config/logger';
+import type { PaymentProvider } from '../../generated/prisma/enums';
 
 export class PaymentService {
   static async initiatePayment(
-    provider: 'stripe' | 'razorpay' | 'mock',
+    provider: PaymentProvider,
     amount: number,
     currency: string,
     idempotencyKey: string

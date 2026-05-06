@@ -6,7 +6,7 @@ extendZodWithOpenApi(z);
 export const createPaymentSchema = z
   .object({
     body: z.object({
-      provider: z.enum(['stripe', 'razorpay', 'mock']).openapi({ example: 'stripe' }),
+      provider: z.enum(['STRIPE', 'RAZORPAY', 'MOCK']).openapi({ example: 'STRIPE' }),
       amount: z.number().positive('Amount must be greater than 0').openapi({ example: 1000 }),
       currency: z
         .string()
