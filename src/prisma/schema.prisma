@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas = ["paymentsystem"]
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  @@schema("paymentsystem")
+}
+
+enum PaymentProvider {
+  STRIPE
+  RAZORPAY
+  MOCK
+  @@schema("paymentsystem")
+}
+
+model Payment {
+  id              String          @id @default(uuid())
+  provider        PaymentProvider @db.Text() @default("mock")
+  amount          Decimal         @db.Decimal(10, 2)
+  currency        String          @db.Char(3)
+  status          PaymentStatus   @default(PENDING)
+  idempotencyKey  String          @unique @map("idempotency_key")
+  failureReason   String?         @map("failure_reason")
+
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  @@map("payments")
+  @@schema("paymentsystem")
+}
