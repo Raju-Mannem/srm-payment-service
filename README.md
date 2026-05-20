@@ -1,5 +1,7 @@
 # Payment Gateway Assignment (Strpie, Razorpay, Mock)
 
+https://srm-payment-service.onrender.com/docs/
+
 ## System Architecture
 
 1. **API Layer (Controllers & Routes):** Handles HTTP requests, rate limiting, and strictly validates incoming JSON payloads using `Zod`. No business logic resides here.
